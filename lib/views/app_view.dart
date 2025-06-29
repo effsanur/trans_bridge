@@ -11,20 +11,69 @@ class AppView extends StatelessWidget {
     return Scaffold(
       appBar: _appBarWidget(),
       body: navigationShell,
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: navigationShell.currentIndex,
-        indicatorColor: Colors.transparent,
-        onDestinationSelected: navigationShell.goBranch,
-        destinations: const [
-          NavigationDestination(icon: Icon(Icons.home), label: 'Ana Sayfa'),
-          NavigationDestination(icon: Icon(Icons.access_time), label: 'Geçmiş'),
-          NavigationDestination(
-            icon: Icon(Icons.support_agent),
-            label: 'Canlı Destek',
-          ),
-          NavigationDestination(icon: Icon(Icons.face), label: 'Profil'),
-        ],
+      bottomNavigationBar: NavigationBarTheme(
+        data: NavigationBarThemeData(
+          labelTextStyle: WidgetStateTextStyle.resolveWith((states) {
+            if (states.contains(WidgetState.selected)) {
+              return TextStyle(color: Theme.of(context).colorScheme.primary);
+            }
+            return TextStyle(color: Theme.of(context).colorScheme.tertiary);
+          }),
+        ),
+        child: NavigationBar(
+          selectedIndex: navigationShell.currentIndex,
+          indicatorColor: Colors.transparent,
+          onDestinationSelected: navigationShell.goBranch,
+          destinations: [
+            _menuItem(
+              context,
+              index: 0,
+              currentIndex: navigationShell.currentIndex,
+              icon: Icons.home,
+              label: 'Ana Sayfa',
+            ),
+            _menuItem(
+              context,
+              index: 1,
+              currentIndex: navigationShell.currentIndex,
+              icon: Icons.access_time,
+              label: 'Geçmiş',
+            ),
+            _menuItem(
+              context,
+              index: 2,
+              currentIndex: navigationShell.currentIndex,
+              icon: Icons.support_agent,
+              label: 'Canlı Destek',
+            ),
+            _menuItem(
+              context,
+              index: 3,
+              currentIndex: navigationShell.currentIndex,
+              icon: Icons.face,
+              label: 'Profil',
+            ),
+          ],
+        ),
       ),
+    );
+  }
+
+  Widget _menuItem(
+    BuildContext context, {
+    required int index,
+    required int currentIndex,
+    required String label,
+    required IconData icon,
+  }) {
+    return NavigationDestination(
+      icon: Icon(
+        icon,
+        color: currentIndex == index
+            ? Theme.of(context).colorScheme.primary
+            : Theme.of(context).colorScheme.tertiary,
+      ),
+      label: label,
     );
   }
 
