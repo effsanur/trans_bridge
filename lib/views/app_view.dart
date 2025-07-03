@@ -9,7 +9,15 @@ class AppView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _appBarWidget(),
+      appBar: navigationShell.currentIndex == 0
+          ? _appBarWidget()
+          : navigationShell.currentIndex == 1
+              ? _pastAppBarWidget()
+              : navigationShell.currentIndex == 2
+                  ? _liveSupportAppBarWidget()
+                  : navigationShell.currentIndex == 3
+                      ? _profileAppBarWidget()
+                      : null,
       body: navigationShell,
       bottomNavigationBar: NavigationBarTheme(
         data: NavigationBarThemeData(
@@ -79,11 +87,50 @@ class AppView extends StatelessWidget {
 
   AppBar _appBarWidget() {
     return AppBar(
+      backgroundColor: const Color(0xFF6E21B5),
       title: const Text(
         'İşaret Dili Çevirmen',
-        style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+        style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500, color: Colors.white),
       ),
-      actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.settings))],
+      actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.settings, color: Colors.white))],
+    );
+  }
+
+  AppBar _pastAppBarWidget() {
+    return AppBar(
+      backgroundColor: const Color(0xFF6E21B5),
+      title: const Text(
+        'Geçmiş Çeviriler',
+        style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500, color: Colors.white),
+      ),
+      actions: [
+        IconButton(
+          onPressed: () {
+            // Geçmişi silme işlemi buraya eklenebilir
+          },
+          icon: const Icon(Icons.delete, color: Colors.white),
+        ),
+      ],
+    );
+  }
+
+  AppBar _liveSupportAppBarWidget() {
+    return AppBar(
+      backgroundColor: const Color(0xFF6E21B5),
+      title: const Text(
+        'Canlı Destek',
+        style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500, color: Colors.white),
+      ),
+    );
+  }
+
+  AppBar _profileAppBarWidget() {
+    return AppBar(
+      backgroundColor: const Color(0xFF6E21B5),
+      title: const Text(
+        'Profil',
+        style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500, color: Colors.white),
+      ),
     );
   }
 }
