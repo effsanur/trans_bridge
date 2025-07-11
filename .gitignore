@@ -45,3 +45,4 @@ app.*.map.json
 /android/app/release
 mp-env/
 .venv_new/src/desktop.ini
+/.venv_new/
