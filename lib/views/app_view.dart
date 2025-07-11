@@ -58,7 +58,7 @@ class AppView extends StatelessWidget {
               context,
               index: 3,
               currentIndex: navigationShell.currentIndex,
-              icon: Icons.face,
+              icon: Icons.account_circle,
               label: 'Profil',
             ),
           ],
@@ -131,6 +131,14 @@ class AppView extends StatelessWidget {
         'Profil',
         style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500, color: Colors.white),
       ),
+      actions: [
+        IconButton(
+          onPressed: () {
+            // Ayarlar sayfasına yönlendirme veya başka bir işlem ekleyebilirsiniz
+          },
+          icon: const Icon(Icons.settings, color: Colors.white),
+        ),
+      ],
     );
   }
 }

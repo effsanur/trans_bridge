@@ -84,6 +84,8 @@ flutter:
           weight: 300
         - asset: assets/fonts/inter_bold.ttf
           weight: 700
+        - asset: assets/images/isaret.png
+
         
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic

@@ -51,23 +51,19 @@ class _HomeViewState extends State<HomeView> {
             ],
           ),
           const SizedBox(height: 8),
-          SizedBox(
+          Container(
+            width: 367,
             height: 480,
+            decoration: BoxDecoration(
+              color: Color(0xFF232B36),
+              borderRadius: BorderRadius.circular(24),
+            ),
             child: Center(
-              child: Container(
-                width: 365,
-                height: 465,
-                decoration: BoxDecoration(
-                  color: Color(0xFF232B36),
-                  borderRadius: BorderRadius.circular(24),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.videocam, size: 48, color: Colors.white38),
-                    const SizedBox(height: 16),
-                  ],
-                ),
+              child: Image.asset(
+                'assets/images/isaret.png',
+                width: 355,
+                height: 479,
+                fit: BoxFit.contain,
               ),
             ),
           ),
