@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:camera/camera.dart';
+import 'camera_view.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -61,8 +63,11 @@ class _HomeViewState extends State<HomeView> {
             child: Center(
               child: isSignToSpeech
                   ? GestureDetector(
-                      onTap: () {
-                        // Kamera erişimi için işlem buraya eklenebilir
+                      onTap: () async {
+                        // Kamera sayfasına yönlendir
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => const CameraView()),
+                        );
                       },
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
