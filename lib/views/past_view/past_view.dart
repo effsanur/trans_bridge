@@ -13,7 +13,7 @@ class PastView extends StatelessWidget {
         children: [
           Container(
             width: 360,
-            height: 390,
+            height: 500,
             margin: const EdgeInsets.only(top: 32), // Üste boşluk eklemek için
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
@@ -78,7 +78,7 @@ class PastView extends StatelessWidget {
   }
 }
 
-class _PastCard extends StatelessWidget {
+class _PastCard extends StatefulWidget {
   final String text;
   final String time;
   final String label;
@@ -89,7 +89,15 @@ class _PastCard extends StatelessWidget {
     required this.time,
     required this.label,
     required this.labelColor,
-  });
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<_PastCard> createState() => _PastCardState();
+}
+
+class _PastCardState extends State<_PastCard> {
+  bool isExpanded = false;
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +118,7 @@ class _PastCard extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  text,
+                  widget.text,
                   style: const TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 15,
@@ -119,7 +127,7 @@ class _PastCard extends StatelessWidget {
                 ),
               ),
               Text(
-                time,
+                widget.time,
                 style: const TextStyle(
                   color: Colors.grey,
                   fontSize: 13,
@@ -134,22 +142,46 @@ class _PastCard extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                 decoration: BoxDecoration(
-                  color: labelColor.withOpacity(0.12),
+                  color: widget.labelColor.withOpacity(0.12),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
-                  label,
+                  widget.label,
                   style: TextStyle(
-                    color: labelColor,
+                    color: widget.labelColor,
                     fontWeight: FontWeight.w500,
                     fontSize: 13,
                   ),
                 ),
               ),
               const Spacer(),
-              const Icon(Icons.expand_more, color: Colors.grey, size: 22),
+              IconButton(
+                icon: Icon(
+                  isExpanded ? Icons.expand_less : Icons.expand_more,
+                  color: Colors.grey,
+                  size: 22,
+                ),
+                onPressed: () {
+                  setState(() {
+                    isExpanded = !isExpanded;
+                  });
+                },
+                splashRadius: 18,
+              ),
             ],
           ),
+          // Açılır alan
+          if (isExpanded)
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Text(
+                "Detaylı bilgi veya ek açıklama buraya gelebilir.",
+                style: const TextStyle(
+                  color: Colors.black54,
+                  fontSize: 13,
+                ),
+              ),
+            ),
         ],
       ),
     );

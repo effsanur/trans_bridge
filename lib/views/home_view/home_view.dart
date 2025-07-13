@@ -59,12 +59,38 @@ class _HomeViewState extends State<HomeView> {
               borderRadius: BorderRadius.circular(24),
             ),
             child: Center(
-              child: Image.asset(
-                'assets/images/isaret.png',
-                width: 355,
-                height: 479,
-                fit: BoxFit.contain,
-              ),
+              child: isSignToSpeech
+                  ? GestureDetector(
+                      onTap: () {
+                        // Kamera erişimi için işlem buraya eklenebilir
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.videocam,
+                            size: 48,
+                            color: Color(0xFFB0B8C1), // Açık gri ton
+                          ),
+                          SizedBox(height: 16),
+                          Text(
+                            "Kamera erişimi için tıklayın",
+                            style: TextStyle(
+                              color: Color(0xFFB0B8C1), // Açık gri ton
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      ),
+                    )
+                  : Image.asset(
+                      'assets/images/isaret.png',
+                      width: 355,
+                      height: 479,
+                      fit: BoxFit.contain,
+                    ),
             ),
           ),
           // Kamera alanı bitti
