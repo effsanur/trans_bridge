@@ -5,6 +5,9 @@ import 'package:trans_bridge/views/home_view/home_view.dart';
 import 'package:trans_bridge/views/live_support_view/live_support_view.dart';
 import 'package:trans_bridge/views/past_view/past_view.dart';
 import 'package:trans_bridge/views/profile_view/profile_view.dart';
+import 'package:trans_bridge/views/login_view.dart';
+import 'package:trans_bridge/views/register_view.dart';
+import 'package:trans_bridge/views/forgot_password_view.dart';
 
 final _routerKey = GlobalKey<NavigatorState>();
 
@@ -15,12 +18,27 @@ class AppRoutes {
   static const String past = '/past';
   static const String livesupport = '/livesupport';
   static const String profile = '/profile';
+  static const String login = '/login';
+  static const String register = '/register';
+  static const String forgotPassword = '/forgot-password';
 }
 
 final router = GoRouter(
   navigatorKey: _routerKey,
-  initialLocation: AppRoutes.home,
+  initialLocation: AppRoutes.login,
   routes: [
+    GoRoute(
+      path: AppRoutes.login,
+      builder: (context, state) => const LoginView(),
+    ),
+    GoRoute(
+      path: AppRoutes.register,
+      builder: (context, state) => const RegisterView(),
+    ),
+    GoRoute(
+      path: AppRoutes.forgotPassword,
+      builder: (context, state) => const ForgotPasswordView(),
+    ),
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) =>
           AppView(navigationShell: navigationShell),
