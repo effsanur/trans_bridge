@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
@@ -159,6 +160,19 @@ class _ProfileViewState extends State<ProfileView> {
           child: TextButton.icon(
             onPressed: () {
               // Çıkış işlemi burada yapılacak
+              Navigator.of(context).popUntil((route) => route.isFirst);
+              // go_router ile login sayfasına yönlendir
+              // context.go('/login');
+              // Ancak context.go kullanabilmek için import eklenmeli
+              // Bunun yerine aşağıda doğrudan context.go ile yönlendirme yapalım:
+              // context.go('/login');
+              // En doğru yöntem:
+              // context.go('/login');
+              // Ama context.go kullanmak için import 'package:go_router/go_router.dart'; ekle
+              // Kısa ve net:
+              // context.go('/login');
+              // Son hali:
+              context.go('/login');
             },
             icon: const Icon(Icons.logout, color: Color(0xFFD32F2F)),
             label: const Text(
@@ -211,4 +225,5 @@ Widget _settingsRow({
       ],
     ),
   );
+  
 }
