@@ -81,12 +81,6 @@ def form_sentence(words):
                 return f"{w.capitalize()} nasıl?"
         return "Nasıl?" # Tek başına "nasıl" algılanırsa
 
-    # Kısa ifadeler kontrolü kaldırıldı. Artık doğrudan birleştirme kısmına düşecek.
-    # short_phrases = {'evet', 'hayır', 'tamam', 'teşekkürler', 'merhaba', 'iyi'}
-    # for w in words:
-    #     if w in short_phrases:
-    #         return w.capitalize()
-
     # Kural yoksa kelimeleri birleştir (benzersiz ve sırasını koruyarak)
     seen = set()
     unique_words_ordered = []
@@ -182,9 +176,11 @@ def process_frame():
                 last_word_detection_time = 0.0
 
 
+        # Buradaki return jsonify bloğunda bir sözdizimi hatası oluşmuş olabilir.
+        # Aşağıdaki formatın doğru olduğundan emin olalım.
         return jsonify({
-            'detected_text': display_text, # Ekranda gösterilecek birikmiş metin
-            'audio_base64': audio_base64 # Sadece yeni bir cümle oluştuğunda ses
+            'detected_text': display_text,
+            'audio_base64': audio_base64
         })
 
     except Exception as e:
