@@ -22,7 +22,12 @@ class _CameraViewState extends State<CameraView> {
   Future<void> _initCamera() async {
     cameras = await availableCameras();
     if (cameras != null && cameras!.isNotEmpty) {
-      _controller = CameraController(cameras![0], ResolutionPreset.medium);
+      // Ön kamerayı seç
+      final frontCamera = cameras!.firstWhere(
+        (camera) => camera.lensDirection == CameraLensDirection.front,
+        orElse: () => cameras!.first,
+      );
+      _controller = CameraController(frontCamera, ResolutionPreset.medium);
       await _controller!.initialize();
       setState(() {
         isReady = true;
