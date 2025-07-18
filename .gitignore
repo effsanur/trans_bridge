@@ -43,3 +43,16 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+mp-env/
+.venv_new/src/desktop.ini
+/.venv_new/
+# Python virtual environment
+backend/venv/
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# YOLO model files (if you don't want to track them in Git)
+# best.pt
+# runs/

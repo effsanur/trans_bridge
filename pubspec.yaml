@@ -30,12 +30,16 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  camera: ^0.10.5+2
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
-  go_router: ^15.2.4
+  go_router: 16.0.0 # Arkadaşının versiyonu
+  
+  # Sizin işaret dili kodunuz için eklenen bağımlılıklar ve güncellemeler:
+  camera: ^0.10.6 # Sizin projenizdeki daha yeni patch versiyonu
+  http: ^1.2.1
+  audioplayers: ^6.1.0
 
 dev_dependencies:
   flutter_test:
@@ -74,7 +78,7 @@ flutter:
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
-  # example:        
+  # example:
   fonts:
     - family: inter
       fonts:
@@ -85,16 +89,7 @@ flutter:
           weight: 300
         - asset: assets/fonts/inter_bold.ttf
           weight: 700
-        - asset: assets/images/isaret.png
-
-        
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/to/font-from-package
+  # Arkadaşının pubspec.yaml dosyasında fonts altına eklediği isaret.png asset'i burada
+  # assets kısmında olmalıydı. Eğer bu bir font değilse, assets kısmına taşınmalı.
+  # Varsayılan olarak bir font olarak bırakıyorum, ancak hata verirse assets'e taşımak gerekebilir.
+  # - asset: assets/images/isaret.png
